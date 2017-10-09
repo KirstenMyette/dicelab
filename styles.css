@@ -1,0 +1,19 @@
+body {
+    background-color: purple;
+}
+
+button {
+    display: block;
+}
+
+div {
+    background-color: black;
+    color: white;
+    line-height: 7em;
+    height: 7em;
+    width: 7em;
+    margin: 2em 2em;
+    float: left;
+    text-align: center;
+    border-radius: 2em;
+}
