@@ -1,53 +1,56 @@
-let dice= ['1', '2', '3', '4', '5', '6'];
+let diceArray = [];
+var generate = document.querySelector("#generate");
+var roll = document.querySelector("#roll");
+var sum = document.querySelector("#sum");
 
-document.addEventListener("DOMContentLoaded", function () {
-    var button = document.createElement("button");
-    button.innerText = "Generate Dice";
-    document.body.appendChild(button);
-    button.addEventListener("click", function () {
-        diceInfo();
-        // diceArray.push(new Die());
-    });
-//Creates dice and displays original "roll"
-    function diceInfo() {
-        this.div = document.createElement('div');
-        document.body.appendChild(this.div);
-        this.div.id = getRandom();
-        this.div.innerText =  getRandom();
-    }
-
-    function getRandom() {
-        return dice[Math.floor(Math.random() * dice.length)];
-    }
-
-
-var button = document.createElement("button");
-button.innerText = "Roll Dice";
-document.body.appendChild(button);
-button.addEventListener("click", function () {
-    Roll();
-   
-});
-
-function Roll() {
-    document.getElementsByTagName("div");
-    // var dice = new Die ();
+var Die = function () {
+    this.div = document.createElement('div');
+    document.body.appendChild(this.div);
+    this.value = Math.floor(Math.random() * 6 + 1);
+    this.div.id =  this.value;
+    this.div.innerText =  this.value;
 }
 
-var button = document.createElement("button");
-button.innerText = "Sum of Dice";
-document.body.appendChild(button);
-button.addEventListener("click", function () {
+Die.prototype.rolling = function (){
+    this.div.value = Math.floor(Math.random() * 6 + 1);
+    this.div.innerText = this.div.value;
+}
 
+//Doesn't work
+// Die.prototype.roll = function(){
+//     this.div.addEventListener("click", function (){ 
+//         rolling();
+//     });
+//     this.div.addEventListener("dblclick", function() {
+//         remove();
+//  });
+// }
+
+//Doesn't work correctly (adds up too much if pressed more than once)
+function getSum() {
+    var sum = diceArray.reduce(function(a, b) {return a + b.value; }, 0);
+    alert(sum);
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+generate.addEventListener("click", function () {
+        diceArray.push(new Die);
+    });
+
+roll.addEventListener("click", function () {
+    for (var i = 0; i < diceArray.length; i++) {
+        diceArray[i].rolling();
+    }
 });
+
+sum.addEventListener("click", function () {
+   getSum();
+});
+
+
+
+
 
 //closes dom content loaded
 });
-
-
-// new.dice (kanye.whatever)
-//store dice in array(to access them all in a new flip)
-
-
-
-
